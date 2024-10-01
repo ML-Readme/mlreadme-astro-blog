@@ -1,4 +1,7 @@
+import sanity from '@sanity/astro'
 import { defineConfig } from 'astro/config';
+import react from '@astrojs/react'
+
 import storyblok from '@storyblok/astro';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
@@ -34,5 +37,13 @@ export default defineConfig({
         //teaser: 'storyblok/Teaser',
       },
     }),
+    sanity({
+      projectId: process.env.SANITY_PROJECT,
+      dataset: process.env.SANITY_DATASET,
+      // Set useCdn to false if you're building statically.
+      useCdn: false,
+      studioBasePath: '/admin',
+    }),
+    react(),
   ]
 });
