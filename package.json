@@ -14,11 +14,19 @@
     "@astrojs/mdx": "^2.2.4",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.1.2",
+    "@astrojs/solid-js": "^4.4.2",
+    "@astrojs/tailwind": "^5.1.1",
     "@sentry/astro": "^8.32.0",
     "@spotlightjs/astro": "^2.1.10",
     "@storyblok/astro": "^5.0.2",
     "astro": "^4.5.16",
+    "astro-content-devtools": "^0.1.0",
     "astro-page-insight": "^0.8.7",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "solid-js": "^1.9.1",
+    "tailwindcss": "^3.4.13"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15"
   }
 }

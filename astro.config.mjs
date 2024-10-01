@@ -6,6 +6,7 @@ import 'dotenv/config';
 import pageInsight from "astro-page-insight";
 import sentry from "@sentry/astro";
 import spotlightjs from "@spotlightjs/astro";
+import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,6 +17,11 @@ export default defineConfig({
     sentry(), 
     spotlightjs(),
     pageInsight(),
+    tailwind({
+      // Example: Allow writing nested CSS declarations
+      // alongside Tailwind's syntax
+      nesting: true,
+    }),
     storyblok({
       accessToken: process.env.STORYBLOK_TOKEN,
       bridge: true,
