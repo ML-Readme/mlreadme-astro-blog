@@ -1,11 +1,10 @@
 
 import { rewrite } from '@vercel/edge';
 
-/** 
 export const config = {
-    matcher: ['/admin/:path*'],
+    matcher: ['/admin', '/admin/:path*'],
 };
-*/
+
 export default function middleware(request: Request) {
     const url = new URL(request.url);
 
