@@ -6,18 +6,22 @@ import react from '@astrojs/react'
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
+import vercelServerless from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mlread.me',
   output: "hybrid",
   server: { port: 4321, host: true },
-  redirects: {
-
-  },
+  adapter: vercelServerless({
+    webAnalytics: {
+      enabled: true,
+    },
+    maxDuration: 8,
+  }),
   integrations: [
-    mdx(), 
-    sitemap(), 
+    mdx(),
+    sitemap(),
     tailwind({
       nesting: true,
     }),
