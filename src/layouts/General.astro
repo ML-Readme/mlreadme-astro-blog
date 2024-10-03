@@ -8,17 +8,18 @@ import { getImage } from 'astro:assets';
 
 
 interface Props {
-	title: string;
-	description: string;
-	
+	title: string,
+	description: string,
+	keywords: string,
+	image: string,
 }
 
-const { title, description} = Astro.props;
+const { title, description, keywords, image} = Astro.props;
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} og_type="website"/>
 		<style>
 			main {
 				width: calc(100% - 2em);

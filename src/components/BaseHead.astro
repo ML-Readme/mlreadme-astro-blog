@@ -1,19 +1,19 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
-
 interface Props {
   title: string;
   description: string;
+  keywords?: string;
+  og_type: string;
   image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const default_key = "machine learning, artificial intelligence, research, blog";
 
-const { title, description, image = "/src/assets/blog-placeholder-2.jpg" } = Astro.props;
+const { title, description, keywords=default_key, og_type, image} = Astro.props;
 
-const imageUrl = new URL(image, Astro.url);
+const imageUrl = new URL(image || "/src/assets/default.jpg", Astro.url);
 ---
 
 <!-- Global Metadata -->
@@ -23,20 +23,8 @@ const imageUrl = new URL(image, Astro.url);
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<link
-  rel="preload"
-  href="/fonts/atkinson-regular.woff"
-  as="font"
-  type="font/woff"
-  crossorigin
-/>
-<link
-  rel="preload"
-  href="/fonts/atkinson-bold.woff"
-  as="font"
-  type="font/woff"
-  crossorigin
-/>
+<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
+<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -45,13 +33,18 @@ const imageUrl = new URL(image, Astro.url);
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={og_type} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
+<meta property="og:site_name" content="ML Readme Blog">
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageUrl} />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="en_GB" />
+<meta property="og:locale:alternate" content="en_CA" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -60,9 +53,8 @@ const imageUrl = new URL(image, Astro.url);
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={imageUrl} />
 
-<!-- Start cookieyes banner --> 
+<!-- Start cookieyes banner -->
  <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/7c9d346cba70d365f135759e/script.js"></script> <!-- End cookieyes banner -->
-
 
 <!-- Google Tag Manager -->
 <script>

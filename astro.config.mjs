@@ -19,15 +19,12 @@ export default defineConfig({
     mdx(), 
     sitemap(), 
     tailwind({
-      // Example: Allow writing nested CSS declarations
-      // alongside Tailwind's syntax
       nesting: true,
     }),
     sanity({
       projectId: 'ph4slmv9',
       dataset: 'development',
       useCdn: false,
-      // `false` if you want to ensure fresh data
       apiVersion: "2024-10-01",
       studioBasePath: '/admin',
     }),

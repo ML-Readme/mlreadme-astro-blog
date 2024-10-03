@@ -14,7 +14,7 @@ const posts = (await getCollection('blog')).sort(
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} og_type="website"/>
 		<style>
 			main {
 				width: 960px;
@@ -24,7 +24,7 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
-
+			//TODO: Add blog post grid
 		</main>
 		<Footer />
 	</body>
