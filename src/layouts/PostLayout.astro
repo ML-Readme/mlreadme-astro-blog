@@ -1,0 +1,88 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import SanityPicture from "astro-sanity-picture";
+import imageUrlBuilder from "@sanity/image-url";
+
+interface Props {
+	title: string;
+	description: string;
+	keywords: string;
+	publishedAt: Date;
+	_updatedAt: Date;
+	heroImage: SanityImageSource;
+}
+
+
+const { title, description, keywords, publishedAt, _updatedAt, heroImage } = Astro.props;
+
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} og_type="article", keywords={keywords}/>
+		<style>
+			.hero-image {
+				width: 100%;
+			}
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
+			}
+			.title {
+				margin-bottom: 1em;
+				padding: 1em 0;
+				text-align: center;
+				line-height: 1;
+			}
+			.title h1 {
+				margin: 0 0 0.5em 0;
+			}
+			.date {
+				margin-bottom: 0.5em;
+				color: rgb(var(--gray));
+			}
+			.last-updated-on {
+				font-style: italic;
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main class="w-screen">
+			<div class="mx-auto p-6">
+				<article class="mx-auto max-w-2xl prose lg:prose-lg sm:prose-sm xs:prose-xs">
+					<div class="hero-image">
+
+						<SanityPicture src={heroImage} imageUrlBuilder={imageUrlBuilder()} sizes="(min-width:768px) 50vw, 100vw"/> 
+					</div>
+					<div >
+						<div class="title">
+							<div class="date">
+								<FormattedDate date={publishedAt} />
+								{
+									_updatedAt && (
+										<div class="last-updated-on">
+											Last updated on <FormattedDate date={_updatedAt} />
+										</div>
+									)
+								}
+							</div>
+							<h1>{title}</h1>
+							<hr />
+						</div>
+						<slot />
+					</div>
+				</article>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

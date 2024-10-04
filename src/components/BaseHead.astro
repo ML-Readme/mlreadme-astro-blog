@@ -1,17 +1,17 @@
 ---
 import "../styles/global.css";
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   keywords?: string;
   og_type: string;
   image?: string;
 }
-
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const default_key = "machine learning, artificial intelligence, research, blog";
 
-const { title, description, keywords=default_key, og_type, image} = Astro.props;
+const { title=SITE_TITLE, description=SITE_DESCRIPTION, keywords=default_key, og_type, image} = Astro.props;
 
 const imageUrl = new URL(image || "/src/assets/default.jpg", Astro.url);
 ---

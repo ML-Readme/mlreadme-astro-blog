@@ -1,5 +1,4 @@
 import { defineField, defineType } from "sanity";
-import { tagType } from "./tagType";
 
 export const postType = defineType({
 	name: "post",

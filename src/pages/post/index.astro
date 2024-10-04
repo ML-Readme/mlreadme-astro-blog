@@ -1,0 +1,35 @@
+---
+export const prerender = true;
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { sanityClient } from "sanity:client";
+import groq from "groq";
+
+
+
+const posts = await sanityClient.fetch(
+	groq`*[_type == "post"]`
+);
+
+console.log(posts)
+---
+
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead og_type="website"/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<ul>
+				{posts.map((post) => (
+					<li><a href={"/post/"+post.slug.current}></a></li>
+				))}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
