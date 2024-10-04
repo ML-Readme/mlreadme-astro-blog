@@ -12,8 +12,8 @@ interface Props {
 	title: string;
 	description: string;
 	keywords: string;
-	publishedAt: Date;
-	_updatedAt: Date;
+	publishedAt: string;
+	_updatedAt: string;
 	heroImage: SanityImageSource;
 }
 
@@ -61,7 +61,7 @@ const { title, description, keywords, publishedAt, _updatedAt, heroImage } = Ast
 				<article class="mx-auto max-w-2xl prose lg:prose-lg sm:prose-sm xs:prose-xs">
 					<div class="hero-image">
 
-						<SanityPicture src={heroImage} imageUrlBuilder={imageUrlBuilder()} sizes="(min-width:768px) 50vw, 100vw"/> 
+
 					</div>
 					<div >
 						<div class="title">

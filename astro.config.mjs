@@ -25,7 +25,7 @@ export default defineConfig({
     mdx(),
     sitemap(),
     tailwind({
-      nesting: true,
+      applyBaseStyles: false,
     }),
     sanity({
       projectId: "fblwvub6",
