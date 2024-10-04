@@ -1,12 +1,8 @@
 ---
 export const prerender = false;
-import { undefined } from 'astro:schema';
 import PostLayout from '../../layouts/PostLayout.astro';
 import { sanityClient } from 'sanity:client';
-
 import groq from 'groq';
-
-const { slug } = Astro.params;
 
 const post = await sanityClient.fetch(
 	groq`*[_type == "post" && slug.current == $slug][0]`,
