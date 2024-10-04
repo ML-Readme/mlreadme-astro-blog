@@ -1,12 +1,10 @@
 ---
-import { Image } from 'astro:assets';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
+import BaseHead from '@components/BaseHead.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import FormattedDate from '@components/FormattedDate.astro';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import SanityPicture from "astro-sanity-picture";
-import imageUrlBuilder from "@sanity/image-url";
+import PortableText from '@components/markdown/PortableText.astro';
 
 interface Props {
 	title: string;
@@ -15,10 +13,11 @@ interface Props {
 	publishedAt: string;
 	_updatedAt: string;
 	heroImage: SanityImageSource;
+	body: Object[];
 }
 
 
-const { title, description, keywords, publishedAt, _updatedAt, heroImage } = Astro.props;
+const { title, description, keywords, publishedAt, _updatedAt, heroImage, body } = Astro.props;
 
 ---
 
@@ -26,31 +25,7 @@ const { title, description, keywords, publishedAt, _updatedAt, heroImage } = Ast
 	<head>
 		<BaseHead title={title} description={description} og_type="article", keywords={keywords}/>
 		<style>
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
+
 		</style>
 	</head>
 
@@ -75,7 +50,7 @@ const { title, description, keywords, publishedAt, _updatedAt, heroImage } = Ast
 									)
 								}
 							</div>
-							<h1>{title}</h1>
+							<PortableText portableText={body}></PortableText>
 							<hr />
 						</div>
 						<slot />
