@@ -7,7 +7,7 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
-      "@sanity/*": ["src/sanity/*"]
+      "@sanitysrc/*": ["src/sanity/*"]
     }
   }
 }

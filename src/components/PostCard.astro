@@ -1,22 +1,27 @@
 ---
-import { getCollection } from 'astro:content';
+export const prerender = true
+import type {Post} from '@sanitysrc/types'
 import FormattedDate from '../components/FormattedDate.astro';
-import Image from 'astro/components/Image.astro';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+import { sanityClient } from "sanity:client";
+import groq from "groq";
+
+const posts:Post[] = await sanityClient.fetch(
+	groq`*[_type == "post"]`
 );
+
+import { urlForImage } from "@sanitysrc/lib/sanityUrl.ts";
 ---
 <section>
 	<ul>
 		{
 			posts.map((post) => (
 			<li>
-				<a href={`/blog/${post.slug}/`}>
-					<Image src={post.data.heroImage} alt="" />
-					<h4 class="title">{post.data.title}</h4>
+				<a href={`/posts/${post.slug.current}/`}>
+					<img src={urlForImage(post.image.asset).url()} alt="" />
+					<h4 class="title">{post.title}</h4>
 					<p class="date">
-						<FormattedDate date={post.data.pubDate} />
+						<FormattedDate date={post.publishedAt} />
 					</p>
 				</a>
 			</li>

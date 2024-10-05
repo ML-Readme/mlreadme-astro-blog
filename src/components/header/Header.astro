@@ -1,0 +1,51 @@
+---
+import NavBar from "./NavBar.astro";
+import { SITE_TITLE } from '../../consts';
+---
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W3Z34DZF"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<header class="bg-white">
+    <div class="mx-auto flex h-20 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
+      <a class="block" href="#">
+		<span class="sr-only">{SITE_TITLE}</span>
+		<svg class="h-16" viewBox="0 0 183 129" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M109.728 6.85938H122.228C124.572 6.85938 126.395 7.51042 127.697 8.8125C128.999 9.85417 129.65 11.5469 129.65 13.8906V108.812C129.65 110.375 129.91 111.547 130.431 112.328C131.212 113.109 132.124 113.5 133.166 113.5H160.509C163.374 113.5 165.978 112.328 168.322 109.984C170.926 107.38 173.139 100.87 174.962 90.4531C175.483 94.099 175.874 97.4844 176.134 100.609C176.655 103.474 177.046 106.469 177.306 109.594C177.306 112.979 176.525 116.104 174.962 118.969C173.66 121.573 171.837 122.875 169.494 122.875H110.119C112.202 122.094 113.895 121.052 115.197 119.75C116.499 118.448 117.15 116.755 117.15 114.672V20.1406C117.15 15.974 116.499 12.9792 115.197 11.1562C113.895 9.07292 112.072 7.64062 109.728 6.85938Z" fill="black"/>
+			<path d="M4.97802 6.85938H74.8999C80.3686 6.85938 86.3582 10.8958 92.8686 18.9688C99.3791 26.7812 102.634 34.0729 102.634 40.8438V113.109C102.634 116.234 103.285 118.448 104.587 119.75C106.15 120.792 108.233 121.833 110.837 122.875H81.9311C85.0561 122.094 87.1395 121.052 88.1811 119.75C89.4832 118.188 90.1343 116.104 90.1343 113.5V41.2344C90.1343 36.026 87.3999 30.4271 81.9311 24.4375C76.4624 18.4479 72.2957 15.4531 69.4311 15.4531H63.1811V115.062C63.1811 116.885 63.702 118.448 64.7436 119.75C66.0457 121.052 67.7384 122.094 69.8218 122.875H44.0405C45.8634 122.094 47.4259 121.182 48.728 120.141C50.0301 119.099 50.6811 117.536 50.6811 115.453V15.4531H24.5093V113.891C24.5093 116.755 25.0301 118.708 26.0718 119.75C27.3739 120.531 29.327 121.573 31.9311 122.875H4.58739C7.19156 121.833 9.01448 120.661 10.0561 119.359C11.3582 118.057 12.0093 116.234 12.0093 113.891V18.9688C12.0093 16.3646 11.4884 14.151 10.4468 12.3281C9.66552 10.2448 7.8426 8.42188 4.97802 6.85938Z" fill="#0000FF"/>
+		</svg>
+			
+      </a>
+	  
+	  <div class="flex flex-1 items-center justify-end md:justify-between">
+		<NavBar></NavBar>
+	  </div>
+	  
+	<div class="flex items-center gap-4">
+		<div class="sm:flex sm:gap-4">
+
+		  <a
+			class="hidden rounded-md bg-readme-500 px-5 py-2.5 text-sm font-medium text-white transition hover:text-readme-800/75"
+			href="#"
+		  >
+			Subscribe
+		  </a>
+		</div>
+	</div>
+	<button class="rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 hidden">
+		<span class="sr-only">Toggle menu</span>
+		<svg
+		  xmlns="http://www.w3.org/2000/svg"
+		  class="size-5"
+		  fill="none"
+		  viewBox="0 0 24 24"
+		  stroke="currentColor"
+		  stroke-width="2"
+		>
+			<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+		</svg>
+	</button>
+</header>

@@ -37,6 +37,7 @@ export const postType = defineType({
 		defineField({
 			name: "slug",
 			type: "slug",
+			validation: (Rule) => Rule.required(),
 			options: {
 				source: "title",
 				maxLength: 100,
@@ -47,6 +48,7 @@ export const postType = defineType({
     defineField({
       name: "publishedAt",
       type: "datetime",
+	  validation: (Rule) => Rule.required(),
 	  options: {
 		dateFormat: 'YYYY-MM-DD'
 	  }
@@ -58,6 +60,7 @@ export const postType = defineType({
 		defineField({
 			name: "image",
 			type: "image",
+			validation: (Rule) => Rule.required(),
 			options: {
 				hotspot: true,
 			},
@@ -65,11 +68,13 @@ export const postType = defineType({
 				{
 					name: "alt",
 					type: "string",
+					validation: (Rule) => Rule.required(),
 					title: "Alternative Text",
 				},
 				{
 					name: "caption",
 					type: "string",
+					validation: (Rule) => Rule.required(),
 					title: "Image caption.",
 				},
 			],
