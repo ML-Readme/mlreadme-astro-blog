@@ -60,5 +60,7 @@ export default defineConfig({
     useCdn: true,
     apiVersion: "2024-10-01",
     studioBasePath: '/admin',
-  }), react(), sentry()]
+  }), 
+  react(), 
+  sentry()]
 });
