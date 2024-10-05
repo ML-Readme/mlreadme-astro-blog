@@ -5,19 +5,10 @@ import Footer from '@components/Footer.astro';
 import FormattedDate from '@components/FormattedDate.astro';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import PortableText from '@components/postblocks/PortableText.astro';
-
-interface Props {
-	title: string;
-	description: string;
-	keywords: string;
-	publishedAt: string;
-	_updatedAt: string;
-	heroImage: SanityImageSource;
-	body: Object[];
-}
-
+import type { BlockContent } from '@sanitysrc/types';
 
 const { title, description, keywords, publishedAt, _updatedAt, heroImage, body } = Astro.props;
+
 
 ---
 
@@ -50,7 +41,7 @@ const { title, description, keywords, publishedAt, _updatedAt, heroImage, body }
 									)
 								}
 							</div>
-							<PortableText portableText={body}></PortableText>
+							<PortableText value={Astro.props.body}></PortableText>
 							<hr />
 						</div>
 						<slot />

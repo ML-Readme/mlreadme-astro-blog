@@ -1,8 +1,15 @@
 ---
-import type { Props as $, Block as BlockType } from "astro-portabletext/types";
+import type { Props as $, Mark as MarkType } from "astro-portabletext/types";
+import { Code } from "astro:components";
 
-export type Props = $<BlockType>;
+export type Props = $<MarkType>;
 
 const props = Astro.props
+
+const textCode = props.node.children.map( line => {
+    return line.text
+}).join('')
+
+console.log(props.node.children)
 ---
-<code {...props}><slot></slot></code>
+<Code code={textCode} lang="python"></Code>

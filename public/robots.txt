@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+User-agent: *
+Disallow: /assets/
+Disallow: /info/
+
 Sitemap: https://www.mlread.me/sitemap.xml
+Sitemap: https://mlread.me/sitemap.xml

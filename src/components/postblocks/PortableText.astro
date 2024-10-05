@@ -1,17 +1,30 @@
 ---
-import { PortableText as PortableTextInternal } from 'astro-portabletext'
+import { PortableText as PT } from 'astro-portabletext'
 import PortableTextImage from "./PortableImage.astro";
-import CustomBlock from './components/CustomBlock.astro';
-import { urlForImage } from "@sanitysrc/lib/sanityUrl.ts";
+import CustomMark from './components/CustomMark.astro';
+import { mergeComponents } from "astro-portabletext/utils";
+import { List as DefaultList } from "astro-portabletext/components";
+import { ListItem as DefaultListItem } from "astro-portabletext/components";
+import { Mark as DefaultMark } from "astro-portabletext/components";
+import type { Props as $, TypedObject } from "astro-portabletext/types";
+import { isTypedObject } from 'sanity';
 
-const components = {
-  type: {
-    image: PortableTextImage,
-    block: CustomBlock
-  }
+type PortableTextProps = Parameters<typeof PT>[0];
+
+export type Props = Pick<PortableTextProps, "value" | "components">;
+
+const defaultComponents = {
+  mark: CustomMark,
 };
 
-const { portableText } = Astro.props;
+
+const { value, components = {} } = Astro.props;
+
+const portableTextProps = {
+  value: value,
+  components: mergeComponents(defaultComponents, components),
+};
+
 ---
 
-<PortableTextInternal value={portableText} components={components}/>
+<PT {...portableTextProps}/>

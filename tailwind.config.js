@@ -4,7 +4,7 @@ export default {
     './public/**/*.html',
     './src/**/*.{js,jsx,ts,tsx,astro,mdx}',
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
