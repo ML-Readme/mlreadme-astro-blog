@@ -1,13 +1,18 @@
 ---
+export const prerender = false
 import BaseHead from '@components/BaseHead.astro';
 import Header from '@components/header/Header.astro';
 import Footer from '@components/Footer.astro';
 import FormattedDate from '@components/FormattedDate.astro';
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import PortableText from '@components/postblocks/PortableText.astro';
-import type { BlockContent } from '@sanitysrc/types';
+import {PortableText} from '@components/portabletext';
+import { urlForImage } from 'src/sanityLib/utils';
 
-const { title, description, keywords, publishedAt, _updatedAt, heroImage, body } = Astro.props;
+
+const { title, description, keywords, publishedAt, _updatedAt, image, body } = Astro.props;
+
+console.log(image)
+const imageurl = urlForImage(image);
+
 
 
 ---
@@ -21,16 +26,18 @@ const { title, description, keywords, publishedAt, _updatedAt, heroImage, body }
 	</head>
 
 	<body>
+		
 		<Header />
 		<main class="w-screen">
-			<div class="mx-auto p-6">
-				<article class="mx-auto max-w-2xl prose lg:prose-lg sm:prose-sm xs:prose-xs">
+			<div class="p-6 mx-auto">
+				<article class="max-w-2xl mx-auto prose lg:prose-lg sm:prose-sm xs:prose-xs">
 					<div class="hero-image">
 
 
 					</div>
 					<div >
 						<div class="title">
+							<h1 class="text-lg">{title}</h1>
 							<div class="date">
 								<FormattedDate date={publishedAt} />
 								{

@@ -1,0 +1,31 @@
+---
+import { PortableText as PT } from 'astro-portabletext'
+import PortableImage from './PortableImage.astro';
+import CustomMark from './CustomMark.astro';
+import { mergeComponents } from "astro-portabletext/utils";
+
+type PortableTextProps = Parameters<typeof PT>[0];
+
+export type Props = Pick<PortableTextProps, "value" | "components">;
+
+const defaultComponents = {
+  mark: CustomMark,
+};
+
+
+const { value, components = {
+  type: {
+    image: PortableImage
+  }
+} } = Astro.props;
+
+console.log(components)
+
+const portableTextProps = {
+  value: value,
+  components: mergeComponents(defaultComponents, components),
+};
+
+---
+
+<PT {...portableTextProps}/>

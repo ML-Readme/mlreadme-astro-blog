@@ -10,7 +10,7 @@ const posts:Post[] = await sanityClient.fetch(
 	groq`*[_type == "post"]`
 );
 
-import { urlForImage } from "@sanitysrc/lib/utils"
+import { urlForImage } from "src/sanityLib/utils"
 ---
 <section>
 	<ul>

@@ -7,8 +7,6 @@ export type Props = $<MarkType>;
 
 const props = Astro.props;
 
-console.log(props.node)
-
 const styleIs = (markType: string) => markType === props.node.markType;
 
 const Cmp = styleIs("code") ? Code : Mark;

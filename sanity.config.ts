@@ -2,7 +2,8 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
-import {schema} from '@sanitysrc/schemas'
+import {schemaType} from '@sanitysrc/schemas'
+import { PortableText } from 'astro-portabletext'
 
 
 export default defineConfig({
@@ -14,6 +15,7 @@ export default defineConfig({
     plugins: [
         structureTool(), //TODO Add portabletext, astro-sanity-picture plugin
         visionTool()
+        
     ],
-    schema
+    schema: schemaType
 })

@@ -7,8 +7,6 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import vercelServerless from '@astrojs/vercel/serverless';
 
-import sentry from '@sentry/astro';
-
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mlread.me',
@@ -57,10 +55,9 @@ export default defineConfig({
     projectId: "fblwvub6",
     dataset: "production",
     token: import.meta.env.SANITY_API_WRITE_TOKEN,
-    useCdn: true,
+    useCdn: false,
     apiVersion: "2024-10-01",
     studioBasePath: '/admin',
   }), 
-  react(), 
-  sentry()]
+  react()]
 });

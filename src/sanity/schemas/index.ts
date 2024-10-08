@@ -4,6 +4,6 @@ import { postType } from "./postType"
 import { tagType } from "./tagType"
 import { citationType } from "./citationType"
 
-export const schema: { types: SchemaTypeDefinition[] } = {
+export const schemaType: { types: SchemaTypeDefinition[] } = {
     types: [blockContentType, tagType, postType, citationType],
 };
