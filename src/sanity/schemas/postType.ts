@@ -73,7 +73,6 @@ export const postType = defineType({
 				{
 					name: "caption",
 					type: "string",
-					validation: (Rule) => Rule.required(),
 					title: "Image caption.",
 				},
 			],

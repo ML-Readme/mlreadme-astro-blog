@@ -1,14 +1,11 @@
 ---
 import type { Props as $, Mark } from "astro-portabletext/types";
 import { Code } from "astro:components";
-import { toPlainText } from "astro-portabletext/utils";
-import { undefined } from "astro:schema";
 
 export type Props = $<Mark>;
 
 const { node, index, isInline, ...attrs }= Astro.props
 
-console.log(typeof node)
 
 const textCode = node.children.map( (child: {text: string, _type: string} ) => {
    return child.text
