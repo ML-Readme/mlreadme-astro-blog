@@ -1,27 +1,25 @@
 ---
-title: 'Generative transformer decoder in TensorFlow'
-description: 'Learning about transformers by building a generative decoder in TensorFlow.'
-pubDate: 'Feb 22 2024'
-sections: 'large-language-models'
+id: Generative transformer decoder in TensorFlow
+title: Generative transformer decoder in TensorFlow
+description: Learning about transformers by building a generative decoder in TensorFlow.
+pubDate: 2024-02-22
+sections: large-language-models
 tags:
-  - 'transformers'
-  - 'nlp'
-  - 'generative'
-  - 'decoder'
+  - transformers
+  - nlp
+  - generative
+  - decoder
 cover:
-  src: '/blog-placeholder-3.jpg'
-  alt: 'placeholder'
+  alt: placeholder
+  src: /blog-placeholder-3.jpg
 ---
-
-import Bookmark from '../../components/Bookmark.astro'
-
 This post documents my process implementing a generative transformer decoder model in TensorFlow in an effort to learn more about this architecture. We will be using a dataset of domain name as an example application to train the model.
 
 ## Data pre-processing
 
 You can find a step-by-step explanation of how to use BPE to tokenize the dataset in a previous post:
 
-<Bookmark name="Byte-Pair Encoding (BPE)" url="/blog/byte-pair-encoding-bpe" />
+[Byte-Pair Encoding (BPE)](/blog/byte-pair-encoding-bpe)
 
 Let's start by loading the already tokenized dataset using the Hugging Face datasets library.
 
@@ -34,9 +32,9 @@ ds = ds['train']
 
 ### Target shifting
 
-The model needs to be fed slightly shifted target sequences. For example, if the correct domain name is "example" during training, the input might be [STA]exampl and the target would be example. This is called "teacher forcing."
+The model needs to be fed slightly shifted target sequences. For example, if the correct domain name is "example" during training, the input might be \[STA]exampl and the target would be example. This is called "teacher forcing."
 
-We can use the map method to produce input and target sequences. Here, x['ids'] contains the tokenized sequences as arrays of numerical IDs representing individual tokens.
+We can use the map method to produce input and target sequences. Here, x\['ids'] contains the tokenized sequences as arrays of numerical IDs representing individual tokens.
 
 ```python
 ds = ds.map(lambda x: {
@@ -86,16 +84,13 @@ Unlike recurrent models (RNNs, LSTMs), Transformers don't have an inherent sense
 
 The original paper uses the following formula for calculating the positional encoding:
 
-<img src="/images/posts/pos-encoding.png" />
+!\[]\(/images/posts/pos-encoding.png)
 
 This implementation uses sinusoids with varying wavelengths to represent positional information. The different depths `i` create different frequencies of sine and cosine waves, giving the model a richer way to "understand" the relative positions of tokens.
 
 The following code is adapted from the TensorFlow documentation:
 
-<Bookmark
-	name="Neural machine translation with a Transformer and Keras | Text | TensorFlow"
-	url="https://www.tensorflow.org/text/tutorials/transformer?ref=mlread.me#the_embedding_and_positional_encoding_layer"
-/>
+[Neural machine translation with a Transformer and Keras | Text | TensorFlow](https://www.tensorflow.org/text/tutorials/transformer?ref=mlread.me#the_embedding_and_positional_encoding_layer)
 
 ```python
 import numpy as np
@@ -143,15 +138,15 @@ The model contains multiple instances of the attention mechanism. Each "head" wi
 
 Let's break down the code for the `CausalSelfAttention` layer class. The constructor takes two parameters:
 
-- `num_heads`: The number of attention heads in the multi-head attention mechanism.
-- `embedding_dim`: The dimensionality of the input embeddings.
+* `num_heads`: The number of attention heads in the multi-head attention mechanism.
+* `embedding_dim`: The dimensionality of the input embeddings.
 
 With these parameters, we instantiate a `MultiHeadAttention` layer, the core of the self-attention mechanism. A `LayerNormalization` object is also created for stabilizing the attention mechanism's output.
 
 The `call` method defines what happens when the layer is called on an input `x`.
 
-- `use_causal_mask=True` ensures the model only attends to previous tokens and not to future ones in the sequence.
-- `x = x + attn_output` performs a residual connection, adding the attention output to the original input. This helps with gradient flow during training.
+* `use_causal_mask=True` ensures the model only attends to previous tokens and not to future ones in the sequence.
+* `x = x + attn_output` performs a residual connection, adding the attention output to the original input. This helps with gradient flow during training.
 
 ```python
 class CausalSelfAttention(tf.keras.layers.Layer):
@@ -253,10 +248,7 @@ Since the target sequences have various lengths and are padded, it is important 
 
 The following code is taken from the TensorFlow documentation:
 
-<Bookmark
-	name="Neural machine translation with a Transformer and Keras | Text | TensorFlow"
-	url="https://www.tensorflow.org/text/tutorials/transformer?ref=mlread.me#set_up_the_loss_and_metrics"
-/>
+[Neural machine translation with a Transformer and Keras | Text | TensorFlow](https://www.tensorflow.org/text/tutorials/transformer?ref=mlread.me#set_up_the_loss_and_metrics)
 
 ```python
 def masked_loss(label, pred):
@@ -288,10 +280,10 @@ def masked_accuracy(label, pred):
 
 The following constants define the hyperparameters of our Transformer decoder architecture:
 
-- `EMBED_DIM`: Dimensionality of the token embeddings.
-- `NUM_HEADS`: Number of attention heads in the multi-head attention layers.
-- `FEED_FORWARD_DIM`: Dimensionality of the hidden layer in the feed-forward sublayers of the decoder.
-- `NUM_LAYERS`: The number of Transformer decoder layers stacked in our model.
+* `EMBED_DIM`: Dimensionality of the token embeddings.
+* `NUM_HEADS`: Number of attention heads in the multi-head attention layers.
+* `FEED_FORWARD_DIM`: Dimensionality of the hidden layer in the feed-forward sublayers of the decoder.
+* `NUM_LAYERS`: The number of Transformer decoder layers stacked in our model.
 
 These parameters are not 'one-size-fits-all'. It's common to experiment with different values to find the best configuration for your specific task.
 
@@ -325,12 +317,9 @@ model.fit(
 ```
 
 Inference
-Once our model is trained, we can use it to generate domain names. The keras_nlp library provides convenient utilities for text generation. The following code is inspired from the Keras documentation:
+Once our model is trained, we can use it to generate domain names. The keras\_nlp library provides convenient utilities for text generation. The following code is inspired from the Keras documentation:
 
-<Bookmark
-	name="Keras documentation: GPT text generation from scratch with KerasNLP"
-	url="https://keras.io/examples/generative/text_generation_gpt/?ref=mlread.me#:~:text=History%20at%200x7f7de0365ba0%3E-,Inference,-With%20our%20trained"
-/>
+[Keras documentation: GPT text generation from scratch with KerasNLP]("https://keras.io/examples/generative/text_generation_gpt/?ref=mlread.me#:~:text=History%20at%200x7f7de0365ba0%3E-,Inference,-With%20our%20trained")
 
 ```python
 prompt = ''
@@ -356,13 +345,10 @@ print(tokenizer.decode(output_tokens).split('[END]')[0])
 
 Here are some example domain names generated by the model:
 
-- `my` `doc` `tor` `y`
-- `r` `is` `k` `b` `ay`
-- `car` `e` `er` `w` `iz` `ard`
+* `my` `doc` `tor` `y`
+* `r` `is` `k` `b` `ay`
+* `car` `e` `er` `w` `iz` `ard`
 
 You can find a notebook with all the code in this post here:
 
-<Bookmark
-	name="transformers/projects/domains/train.ipynb at main · jgeofil/transformers"
-	url="https://github.com/jgeofil/transformers/blob/main/projects/domains/train.ipynb?ref=mlread.me"
-/>
+[transformers/projects/domains/train.ipynb at main · jgeofil/transformers](https://github.com/jgeofil/transformers/blob/main/projects/domains/train.ipynb?ref=mlread.me)

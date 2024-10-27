@@ -13,7 +13,6 @@ cover:
   alt: 'placeholder'
 ---
 
-import Bookmark from '../../components/Bookmark.astro'
 
 In this post we'll show how to train a custom Byte-Pair Encoding tokenizer on a dataset of
 domain names using the Hugging Face library.
@@ -39,9 +38,9 @@ word-like structures with the ability to handle rare or unseen words.
 BPE works by iteratively merging frequent pairs of characters or character sequences.
 You can find a step-by-step example of how to implement the algorithm from scratch in the Hugging Face NLP course.
 
-<Bookmark
+<a
 	name="Byte-Pair Encoding tokenization - Hugging Face NLP Course"
-	url="https://huggingface.co/learn/nlp-course/en/chapter6/5"
+	href="https://huggingface.co/learn/nlp-course/en/chapter6/5"
 />
 
 Here's a quick summary of the process:
@@ -67,8 +66,8 @@ We'll start by downloading a compressed text file (.txt.gz) containing a list of
 from datasets import DownloadManager
 
 dl_manager = DownloadManager()
-url = 'https://huggingface.co/datasets/jeremygf/domains-app-alpha/resolve/main/app.txt.gz'
-file_path = dl_manager.download(url)
+href = 'https://huggingface.co/datasets/jeremygf/domains-app-alpha/resolve/main/app.txt.gz'
+file_path = dl_manager.download(href)
 ```
 
 This file simply contains one domain name per line. We can load it into a pandas dataframe.
@@ -197,7 +196,7 @@ ds = ds.map(lambda x: {
 
 You can find a notebook with all the code in this post here:
 
-<Bookmark
+<a
 	name="transformers/projects/domains/preprocess.ipynb at main · jgeofil/transformers"
-	url="https://github.com/jgeofil/transformers/blob/main/projects/domains/preprocess.ipynb"
+	href="https://github.com/jgeofil/transformers/blob/main/projects/domains/preprocess.ipynb"
 />
