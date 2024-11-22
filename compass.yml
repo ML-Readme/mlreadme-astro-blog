@@ -1,0 +1,25 @@
+name: mlreadme-astro-blog
+id: ari:cloud:compass:ced01fd7-1c01-446e-95b1-eeff7ee45877:component/b58e5d9f-6357-435e-8d06-cf5f36a0a428/95bf180a-c929-4824-a29a-55fdd2df4642
+description: ML Readme | Machine learning and AI blog
+configVersion: 1
+typeId: WEBSITE
+ownerId: ari:cloud:identity::team/04b132c9-02ce-460d-903b-873ababc746b
+fields:
+  tier: 4
+links:
+  - name: null
+    type: REPOSITORY
+    url: https://github.com/ML-Readme/mlreadme-astro-blog
+relationships:
+  DEPENDS_ON: []
+labels:
+  - astro
+  - astro-blog
+  - blog
+  - blogging-app
+  - language:html
+  - machine-learning
+  - mdx
+  - source:github
+  - typescript-astro
+customFields: null
